@@ -1,0 +1,153 @@
+{
+  "akhil18@navgurukul.org": {
+    "3/10/2019": [
+      {
+        "agenda": "Complete python",
+        "complete": true,
+        "id": 1
+      },
+      {
+        "agenda": "complete js",
+        "complete": false,
+        "id": 2
+      }
+    ],
+    "3/11/2019": [
+      {
+        "agenda": "I am going to arrange my github today",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "I will make a neat and clean resume",
+        "complete": false,
+        "id": 2
+      },
+      {
+        "agenda": "Change my passwords",
+        "complete": false,
+        "id": 3
+      },
+      {
+        "agenda": "Learn Markdownn",
+        "complete": false,
+        "id": 4
+      },
+      {
+        "agenda": "learn git",
+        "complete": false,
+        "id": 5
+      },
+      {
+        "agenda": "solve 4 questions",
+        "complete": false,
+        "id": 6
+      }
+    ],
+    "3/19/2019": [
+      {
+        "agenda": "https://youtu.be/68emTxj1beQ",
+        "complete": false,
+        "id": 1
+      }
+    ],
+    "3/26/2019": [
+      {
+        "agenda": "I will do a hackton",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "I will study python",
+        "complete": true,
+        "id": 2
+      }
+    ]
+  },
+  "jagannath18@navgurukul.org": {
+    "3/11/2019": [
+      {
+        "agenda": "I will create a new chatbot today",
+        "complete": false,
+        "id": 1
+      }
+    ],
+    "3/12/2019": [
+      {
+        "agenda": "hello",
+        "complete": false,
+        "id": 1
+      }
+    ]
+  },
+  "satyam18@navgurukul.org": {
+    "3/11/2019": [
+      {
+        "agenda": "hello bete",
+        "complete": false,
+        "id": 1
+      }
+    ],
+    "3/27/2019": [
+      {
+        "agenda": "today i will complete python",
+        "complete": false,
+        "id": 1
+      }
+    ],
+    "3/28/2019": [
+      {
+        "agenda": "Today I will complete MySql",
+        "complete": false,
+        "id": 1
+      }
+    ]
+  },
+  "yogesh18@navgurukul.org": {
+    "3/11/2019": [
+      {
+        "agenda": "new agenda",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "i solev tow question",
+        "complete": false,
+        "id": 2
+      }
+    ]
+  },
+  "pavan18@navgurukul.org": {
+    "3/12/2019": [
+      {
+        "agenda": "new agenda",
+        "complete": false,
+        "id": 1
+      },
+      {
+        "agenda": "make a video and post it",
+        "complete": false,
+        "id": 2
+      },
+      {
+        "agenda": "compleet the cv",
+        "complete": false,
+        "id": 3
+      },
+      {
+        "agenda": "do at least 2 logical questions and reas js",
+        "complete": false,
+        "id": 4
+      }
+    ]
+  },
+  "sunil18@navgurukul.org": {
+    "3/26/2019": [
+      {
+        "agenda": "new agenda",
+        "complete": false,
+        "id": 1
+      }
+    ]
+  }
+}
