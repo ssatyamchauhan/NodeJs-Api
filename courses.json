@@ -1,0 +1,111 @@
+[
+  {
+    "name": "sagan",
+    "description": "hello satyam",
+    "id": 1,
+    "exercise": [
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 1
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 2
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 3,
+        "submission": []
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 4,
+        "submission": []
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 5
+      }
+    ]
+  },
+  {
+    "name": "Annop",
+    "description": "hello Jalota",
+    "id": 2,
+    "exercise": [
+      {
+        "courseId": "2",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 1
+      },
+      {
+        "courseId": "2",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 2
+      },
+      {
+        "courseId": "2",
+        "name": "Introduction (ek naya kaala",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 3
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 3,
+        "submission": [
+          {
+            "courseId": "2",
+            "exerciseId": "4",
+            "content": "Iss exercise mein aapne yeh sab karna hai.",
+            "userName": "Satyam",
+            "id": 1
+          },
+          {
+            "courseId": "2",
+            "exerciseId": "4",
+            "content": "Iss exercise mein aapne yeh sab karna hai.",
+            "userName": "Sagar",
+            "id": 2
+          }
+        ]
+      },
+      {
+        "courseId": "1",
+        "name": "Introduction (ek naya jagan)",
+        "content": "Iss exercise mein aapne yeh sab karna hai.",
+        "hint": "Hello! Yeh ek hint hai!!!!",
+        "id": 4,
+        "submission": [
+          {
+            "courseId": "1",
+            "exerciseId": "4",
+            "id": 1
+          }
+        ]
+      }
+    ]
+  }
+]
