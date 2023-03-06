@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Test Building...'
+                echo 'Test Webhook Building...'
                 sh 'npm install'
             }
         }
