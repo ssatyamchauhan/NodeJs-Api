@@ -8,5 +8,17 @@
     "start": "node server.js"
   },
   "author": "satyam",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://ssatyamchauhan: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@github.com/ssatyamchauhan/NodeJs-Api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ssatyamchauhan/NodeJs-Api/issues"
+  },
+  "homepage": "https://github.com/ssatyamchauhan/NodeJs-Api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.4"
+  }
 }
