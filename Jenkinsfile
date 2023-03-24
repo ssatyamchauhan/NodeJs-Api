@@ -1,20 +1,31 @@
-#!/usr/bin/env groovy
-
 pipeline {
+  agent any
 
-    agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+  environment {
+    SSH_QA_SERVER = credentials('QA_SSH_CREDS')
+    QA_SERVER_IP = '13.233.212.129'
+    DIR_PATH = '/home/ubuntu/NodeJs-Api'
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Test Webhook Building...'
-                sh 'npm install'
-            }
-        }
+    stage('Build') {
+      steps {
+        sh 'npm install'
+      }
     }
+
+    stage('Deploy') {
+      steps {
+        sshagent(['${SSH_QA_SERVER}']) {
+          sh 'ssh ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
+        }
+      }
+    }
+  }
 }
