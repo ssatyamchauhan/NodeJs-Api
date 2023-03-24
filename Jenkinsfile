@@ -23,7 +23,7 @@ pipeline {
     stage('Deploy') {
       steps {
         sshagent(['${SSH_QA_SERVER}']) {
-          sh 'ssh ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
+          sh 'ssh -o StrictHostKeyChecking=no ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
         }
       }
     }
