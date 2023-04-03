@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     SSH_QA_SERVER = credentials('QA_SSH_CREDS')
-    QA_SERVER_IP = '13.233.212.129'
+    QA_SERVER_IP = '13.126.169.55'
     DIR_PATH = '/home/ubuntu/NodeJs-Api'
   }
 
