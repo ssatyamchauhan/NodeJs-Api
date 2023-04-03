@@ -1,0 +1,10 @@
+VPCvpc-0d2953464654f2cee
+Subnet 1subnet-06d18dcfc58f877ed
+Subnet 1 route table associationrtbassoc-08a26bf0894f1def9
+Subnet 2subnet-0fd2ffc030f709aa0
+Subnet 2 route table associationrtbassoc-09148755bca3478eb
+VPC Availability Zonesap-south-1a, ap-south-1b, ap-south-1c
+Internet gatewayigw-056395f8e9420eaec
+Route tablertb-0cb92c402d213aa62
+Amazon EC2 routeEC2Co-Publi-14TO4FHUEQZ1Y
+Virtual private gateway attachmentEC2Co-Attac-J3VVCR24FNCU

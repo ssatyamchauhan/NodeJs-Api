@@ -7,6 +7,7 @@ const create = require('./createddb')
 const app = express();
 // data will be  sent in the request body
 app.use(express.json());
+const PORT = process.env.PORT || 3004;
 
 // for serving static files
 // app.use(express.static('public'));
@@ -196,6 +197,6 @@ app.delete('/course/:courid/exercise/:exer_id/submission/:submid',(req,res)=>{
 })
 
 
-app.listen(2050,()=>{
+app.listen(PORT,()=>{
     console.log('your app is listening')
 })

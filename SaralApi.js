@@ -190,5 +190,5 @@ courses.post('/:id/exercise/:Id/submission',(req,res)=>{
 
 
 app.listen(2030, ()=>{
-    console.log("server is listening")
+    console.log("server is listening on port 2030")
 });

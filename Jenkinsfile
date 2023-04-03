@@ -2,30 +2,32 @@ pipeline {
   agent any
 
   environment {
-    SSH_QA_SERVER = credentials('QA_SSH_CREDS')
-    QA_SERVER_IP = '13.126.169.55'
-    DIR_PATH = '/home/ubuntu/NodeJs-Api'
+        region = "us-east-1"
+        docker_repo_uri = "935402898342.dkr.ecr.ap-south-1.amazonaws.com/brant_ford_admin_api"
+        task_def_arn = ""
+        cluster = ""
+        exec_role_arn = ""
   }
 
   stages {
-    stage('Checkout') {
+    stage('Clone From Repo') {
       steps {
         checkout scm
       }
     }
 
-    // stage('Build') {
-    //   steps {
-    //     sh 'npm install'
-    //   }
-    // }
-
-    stage('Deploy') {
+    stage('Build Docker') {
       steps {
-        sshagent(['${SSH_QA_SERVER}']) {
-          sh 'ssh -o StrictHostKeyChecking=no ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
-        }
+        sh 'npm install'
       }
     }
+
+    // stage('Deploy') {
+    //   steps {
+    //     sshagent(['${SSH_QA_SERVER}']) {
+    //       sh 'ssh -o StrictHostKeyChecking=no ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
+    //     }
+    //   }
+    // }
   }
 }
