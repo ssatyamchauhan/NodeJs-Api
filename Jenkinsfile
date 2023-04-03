@@ -3,7 +3,7 @@ pipeline {
   environment {
         AWS_ACCOUNT_ID="935402898342"
         AWS_DEFAULT_REGION="ap-south-1"
-        CLUSTER_NAME="Cluster-QA"
+        FARGATE_CLUSTER_NAME="Cluster-QA"
         SERVICE_NAME="Service-QA"
         TASK_DEFINITION_NAME="Admin_Api"
         DESIRED_COUNT="1"
@@ -13,25 +13,49 @@ pipeline {
         REGISTRY_CREDENTIALS="AWS_CREDS"
   }
 
-  // stages {
-  //   stage('Clone From Repo') {
-  //     steps {
-  //       checkout scm
-  //     }
-  //   }
-
-  //   stage('Build Docker') {
-  //     steps {
-  //       sh 'npm install'
-  //     }
-  //   }
-
-  //   stage('Deploy') {
-  //     steps {
-  //       sshagent(['${SSH_QA_SERVER}']) {
-  //         sh 'ssh -o StrictHostKeyChecking=no ubuntu@${QA_SERVER_IP} "sudo su && cd ${DIR_PATH} && git pull && npm install && pm2 restart ecosystem.config.js"'
-  //       }
-  //     }
-  //   }
-  // }
+  stages {
+        stage('Build Docker image') {
+            steps {
+                script {
+                    docker.build("${IMAGE_REPO_NAME}:${IMAGE_TAG}")
+                }
+            }
+        }
+        
+        stage('Push Docker image to ECR') {
+            steps {
+                script {
+                    sh("aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com")
+                    docker.tag("${IMAGE_REPO_NAME}:${IMAGE_TAG}", "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}")
+                    docker.push("${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}")
+                }
+            }
+        }
+        
+        stage('Create task definition') {
+            steps {
+                script {
+                    def taskDefinition = [:]
+                    taskDefinition.family = "${IMAGE_REPO_NAME}"
+                    taskDefinition.containerDefinitions = [[
+                        name: "${IMAGE_REPO_NAME}",
+                        image: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
+                        cpu: 256,
+                        memoryReservation: 512
+                    ]]
+                    writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
+                }
+            }
+        }
+        
+      stage('Deploy to Fargate') {
+          steps {
+              script {
+                  def taskDefinition = readJSON(file: 'taskDefinition.json')
+                  sh("aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json '${taskDefinition}'")
+                  sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${IMAGE_REPO_NAME} --force-new-deployment")
+              }
+          }
+      }
+  }
 }
