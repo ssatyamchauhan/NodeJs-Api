@@ -22,6 +22,7 @@ import java.net.URL
     }
 
     stages {
+
           stage('Build Docker image') {
               steps {
                   script {
@@ -29,7 +30,11 @@ import java.net.URL
                   }
               }
           }
-          
+          stage('Print Groovy version') {
+              steps {
+                sh 'echo "Groovy version: ${GroovySystem.version}"'
+              }
+          }
           stage('Push Docker image to ECR') {
               steps {
                   script {
