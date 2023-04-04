@@ -18,7 +18,7 @@ import java.net.URL
           IMAGE_REPO_NAME="brant_ford_admin_api"
           IMAGE_TAG="${env.BUILD_ID}"
           REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-          REGISTRY_CREDENTIALS="AKIA5TSS3QOTDCEF4V7N"
+          REGISTRY_CREDENTIALS="AWS_CREDS"
     }
 
     stages {
@@ -30,11 +30,11 @@ import java.net.URL
                   }
               }
           }
-        //   stage('Print Groovy version') {
-        //       steps {
-        //         sh 'echo "Groovy version: ${GroovySystem.version}"'
-        //       }
-        //   }
+          stage('Print AWS_CREDS') {
+              steps {
+                sh 'echo "Groovy version: ${REGISTRY_CREDENTIALS}"'
+              }
+          }
         //   stage('Push Docker image to ECR') {
         //       steps {
         //           script {
@@ -48,7 +48,7 @@ import java.net.URL
         stage('Push docker image to ECR') {
             steps {
                 script {
-                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '${REGISTRY_CREDENTIALS}', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_CREDS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
                         sh "aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
                         sh "docker tag ${IMAGE_REPO_NAME}:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest"
                         sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:latest"
