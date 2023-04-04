@@ -55,6 +55,7 @@ import java.net.URL
                 script {
                     def taskDefinition = [:]
                     taskDefinition["family"] = "${IMAGE_REPO_NAME}"
+                    taskDefinition["executionRoleArn"] = "arn:aws:iam::${AWS_ACCOUNT_ID}:role/ecsTaskExecutionRole"
                     taskDefinition["containerDefinitions"] = [[
                         "name": "${IMAGE_REPO_NAME}",
                         "image": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
