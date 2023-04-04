@@ -12,7 +12,7 @@ import java.net.URL
           AWS_ACCOUNT_ID="935402898342"
           AWS_DEFAULT_REGION="ap-south-1"
           FARGATE_CLUSTER_NAME="Cluster-QA"
-          SERVICE_NAME="QA_TEST_SERVICE"
+          SERVICE_NAME="QA_TEST_TG_SERVICE"
           TASK_DEFINITION_NAME="QA_TEST"
           DESIRED_COUNT="1"
           IMAGE_REPO_NAME="brant_ford_admin_test_api"
