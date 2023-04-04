@@ -62,7 +62,7 @@ import java.net.URL
                         "memoryReservation": 512,
                         "secrets": [[
                             "name": "${AWS_SECRET_NAME}",
-                            "valuFrom": "arn:aws:secretsmanager:${AWS_DEFAULT_REGION}:${AWS_ACCOUNT_ID}:secret:${AWS_SECRET_NAME}"
+                            "valueFrom": "arn:aws:secretsmanager:${AWS_DEFAULT_REGION}:${AWS_ACCOUNT_ID}:secret:${AWS_SECRET_NAME}-So5Sit"
                         ]]
                     ]]
                     writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
