@@ -198,5 +198,5 @@ app.delete('/course/:courid/exercise/:exer_id/submission/:submid',(req,res)=>{
 
 
 app.listen(PORT,()=>{
-    console.log('your app is listening')
+    console.log(`Your app is listening on port ${PORT}`)
 })
