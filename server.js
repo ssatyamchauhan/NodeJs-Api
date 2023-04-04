@@ -12,6 +12,9 @@ const PORT = process.env.PORT || 3004;
 // for serving static files
 // app.use(express.static('public'));
 
+app.get("/health", (req, res) => {
+    return res.status(200).json({message: "I am Healthy Don't Worry!", status: 200})
+})
 
 // get method for getting the whole data stored in courses or exercise
 app.get('/allcourses',(req,res)=>{

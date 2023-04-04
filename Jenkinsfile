@@ -49,6 +49,13 @@ import java.net.URL
 
             }
         }
+
+        stage('Removing Docker Images from Jenkins') {
+            steps {
+                sh "docker rmi ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+                sh "docker rmi ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+            }
+        }
           
         stage('Create task definition') {
             steps {
