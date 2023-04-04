@@ -69,10 +69,22 @@ import java.net.URL
             steps {
                 script {
                     def taskDefinition = readJSON(file: 'taskDefinition.json')
+                    sh("cat '${taskDefinition}'")
                     sh("aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json '${taskDefinition}'")
                     sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${IMAGE_REPO_NAME} --force-new-deployment")
                 }
             }
         }
+
+        // stage('Deploy to ECS') {
+        //     steps {
+        //         script {
+        //             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS_CREDS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+        //                 sh "aws ecs update-service --cluster ${FARGATE_CLUSTER_NAME} --service ${CONTAINER_NAME} --force-new-deployment --task-definition ${TASK_DEFINITION}"
+        //             }
+        //         }
+        //     }
+        // }
+
     }
   }
