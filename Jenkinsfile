@@ -53,12 +53,12 @@ import java.net.URL
             steps {
                 script {
                     def taskDefinition = [:]
-                    taskDefinition.family = "${IMAGE_REPO_NAME}"
-                    taskDefinition.containerDefinitions = [[
-                        name: "${IMAGE_REPO_NAME}",
-                        image: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
-                        cpu: 256,
-                        memoryReservation: 512
+                    taskDefinition["family"] = "${IMAGE_REPO_NAME}"
+                    taskDefinition["containerDefinitions"] = [[
+                        "name": "${IMAGE_REPO_NAME}",
+                        "image": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
+                        "cpu": 256,
+                        "memoryReservation": 512
                     ]]
                     writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
                 }
@@ -69,7 +69,6 @@ import java.net.URL
             steps {
                 script {
                     def taskDefinition = readJSON(file: 'taskDefinition.json')
-                    sh("cat '${taskDefinition}'")
                     sh("aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json '${taskDefinition}'")
                     sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${IMAGE_REPO_NAME} --force-new-deployment")
                 }
