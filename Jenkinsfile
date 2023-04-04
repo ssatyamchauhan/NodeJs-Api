@@ -19,7 +19,7 @@ import java.net.URL
           IMAGE_TAG="${env.BUILD_ID}"
           REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
           REGISTRY_CREDENTIALS="AWS_CREDS"
-          AWS_SECRET_NAME: "qa_ecr"
+          AWS_SECRET_NAME="qa_ecr"
     }
 
     stages {
