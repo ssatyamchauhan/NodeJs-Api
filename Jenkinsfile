@@ -18,7 +18,8 @@ import java.net.URL
           IMAGE_REPO_NAME="brant_ford_admin_api"
           IMAGE_TAG="${env.BUILD_ID}"
           REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-          REGISTRY_CREDENTIALS="AWS_CREDS"
+          REGISTRY_CREDENTIALS="AWS_CREDS",
+          AWS_SECRET_NAME: "qa/ecr"
     }
 
     stages {
@@ -58,7 +59,11 @@ import java.net.URL
                         "name": "${IMAGE_REPO_NAME}",
                         "image": "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
                         "cpu": 256,
-                        "memoryReservation": 512
+                        "memoryReservation": 512,
+                        "secrets": [[
+                            "name": "${AWS_SECRET_NAME}",
+                            "valuFrom": "arn:aws:secretsmanager:${AWS_DEFAULT_REGION}:${AWS_ACCOUNT_ID}:secret:${AWS_SECRET_NAME}"
+                        ]]
                     ]]
                     writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
                 }
