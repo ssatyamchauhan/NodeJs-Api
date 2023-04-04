@@ -69,7 +69,7 @@ import java.net.URL
             steps {
                 script {
                     def taskDefinition = readJSON(file: 'taskDefinition.json')
-                    sh("cat '${taskDefinition}'")
+                    sh('echo "Directory" && pwd')
                     sh("aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json '${taskDefinition}'")
                     sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${IMAGE_REPO_NAME} --force-new-deployment")
                 }
