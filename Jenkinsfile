@@ -71,7 +71,7 @@ import java.net.URL
                     def taskDefinition = readJSON(file: 'taskDefinition.json')
                     sh('echo "Directory" && pwd')
                     sh("aws ecs register-task-definition --region ${AWS_DEFAULT_REGION} --cli-input-json '${groovy.json.JsonOutput.toJson(taskDefinition)}'")
-                    sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${IMAGE_REPO_NAME} --force-new-deployment")
+                    sh("aws ecs update-service --region ${AWS_DEFAULT_REGION} --cluster ${FARGATE_CLUSTER_NAME} --service ${SERVICE_NAME} --force-new-deployment")
                 }
             }
         }
