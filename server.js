@@ -7,13 +7,17 @@ const create = require('./createddb')
 const app = express();
 // data will be  sent in the request body
 app.use(express.json());
-const PORT = process.env.PORT || 3004;
+const PORT = process.env.PORT || 3003;
 
 // for serving static files
 // app.use(express.static('public'));
 
 app.get("/health", (req, res) => {
     return res.status(200).json({message: "I am Healthy Don't Worry!", status: 200})
+})
+
+app.get("/qatest", (req, res) => {
+    return res.status(200).json({message: "Second Application", status: 204})
 })
 
 // get method for getting the whole data stored in courses or exercise
