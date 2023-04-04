@@ -35,15 +35,6 @@ import java.net.URL
                 sh 'echo "Groovy version: ${REGISTRY_CREDENTIALS}"'
               }
           }
-        //   stage('Push Docker image to ECR') {
-        //       steps {
-        //           script {
-        //               sh("aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com")
-        //               docker.tag("${IMAGE_REPO_NAME}:${env.BUILD_NUMBER}", "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${env.BUILD_NUMBER}")
-        //               docker.push("${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${env.BUILD_NUMBER}")
-        //           }
-        //       }
-        //   }
 
         stage('Push docker image to ECR') {
             steps {
@@ -58,21 +49,21 @@ import java.net.URL
             }
         }
           
-          stage('Create task definition') {
-              steps {
-                  script {
-                      def taskDefinition = [:]
-                      taskDefinition.family = "${IMAGE_REPO_NAME}"
-                      taskDefinition.containerDefinitions = [[
-                          name: "${IMAGE_REPO_NAME}",
-                          image: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
-                          cpu: 256,
-                          memoryReservation: 512
-                      ]]
-                      writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
-                  }
-              }
-          }
+        stage('Create task definition') {
+            steps {
+                script {
+                    def taskDefinition = [:]
+                    taskDefinition.family = "${IMAGE_REPO_NAME}"
+                    taskDefinition.containerDefinitions = [[
+                        name: "${IMAGE_REPO_NAME}",
+                        image: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}",
+                        cpu: 256,
+                        memoryReservation: 512
+                    ]]
+                    writeFile file: 'taskDefinition.json', text: groovy.json.JsonOutput.toJson(taskDefinition)
+                }
+            }
+        }
           
         stage('Deploy to Fargate') {
             steps {

@@ -1,0 +1,11 @@
+ClusterCluster-QA
+Launch typeFARGATE
+Operating system familyLinux
+Task DefinitionAdminApiTask:1
+Platform versionLATEST
+Service nameAdminApiService
+Service typeREPLICA
+Number of tasks1
+Minimum healthy percent70
+Maximum percent200
+Deployment circuit breakerDisabled
