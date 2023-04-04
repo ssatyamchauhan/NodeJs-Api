@@ -18,7 +18,7 @@ import java.net.URL
           IMAGE_REPO_NAME="brant_ford_admin_api"
           IMAGE_TAG="${env.BUILD_ID}"
           REPOSITORY_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-          REGISTRY_CREDENTIALS="AWS_CREDS"
+          REGISTRY_CREDENTIALS="AKIA5TSS3QOTDCEF4V7N"
     }
 
     stages {
